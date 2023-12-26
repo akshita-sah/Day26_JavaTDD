@@ -9,6 +9,9 @@ public class InvoiceGeneratorTest {
         InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
         Assert.assertEquals(210,invoiceGenerator.calculateTotalFare(20,10));
     }
+    /*UC 2 - Find Fare for multiple rides,
+      UC 3 - Find fare, no of rides and average fare per ride.
+     */
     @Test
     public void GivenMultipleRides_FindTotalFare()
     {
@@ -18,7 +21,9 @@ public class InvoiceGeneratorTest {
                 new Ride(10,50)
         };
         InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-        int fare = invoiceGenerator.calculateTotalFareForMultipleRides(multipleRideList);
-        Assert.assertEquals(150,fare);
+        invoiceGenerator.calculateTotalFareForMultipleRides(multipleRideList);
+        Assert.assertEquals(150,invoiceGenerator.totalFare);
+        Assert.assertEquals(3,invoiceGenerator.noOfRides);
+        Assert.assertEquals(50,invoiceGenerator.AvgFarePerRide);
     }
 }
