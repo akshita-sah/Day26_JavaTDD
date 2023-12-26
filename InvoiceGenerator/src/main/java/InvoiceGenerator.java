@@ -9,6 +9,9 @@ public class InvoiceGenerator {
     {
         this.userList = new HashMap<>();
     }
+    /*
+    Calculate total fare according to distance and time
+     */
     int calculateTotalFare(int distance,int time)
     {
         totalFare = 10 * distance + 1 * time;
@@ -23,9 +26,17 @@ public class InvoiceGenerator {
         totalFare = 0;
         int fare = 0;
         for(Ride rides : multipleRideList) {
-            fare = 10 * rides.distance + 1 * rides.time;
-            if (fare < 5) {
-                fare = 5;
+            if(rides.type == 'N') {
+                fare = 10 * rides.distance + 1 * rides.time;
+                if (fare < 5) {
+                    fare = 5;
+                }
+            }
+            else {
+                fare = 15 * rides.distance + 2 * rides.time;
+                if (fare < 20) {
+                    fare = 20;
+                }
             }
             totalFare+=fare;
             fare = 0;
@@ -33,16 +44,26 @@ public class InvoiceGenerator {
         noOfRides = multipleRideList.length;
         AvgFarePerRide = totalFare/noOfRides;
     }
+    /*
+    Calculate total fare according to distance, time and type.
+     */
     void addUserId(Ride[] multipleRideList,String user)
     {
         totalFare = 0;
         int fare = 0;
         for(Ride rides : multipleRideList)
         {
-            fare+= 10*rides.distance + 1 * rides.time;
-            if(fare<5)
-            {
-                fare = 5;
+            if(rides.type == 'N') {
+                fare = 10 * rides.distance + 1 * rides.time;
+                if (fare < 5) {
+                    fare = 5;
+                }
+            }
+            else {
+                fare = 15 * rides.distance + 2 * rides.time;
+                if (fare < 20) {
+                    fare = 20;
+                }
             }
             totalFare+=fare;
             fare = 0;
